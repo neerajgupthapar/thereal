@@ -1,0 +1,13 @@
+/* Removes the browser's default spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic page styling */
+body {
+    background-color: #18181f;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
