@@ -1,0 +1,100 @@
+/* Full page */
+#Maindiv {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111827;
+    padding: 30px;
+}
+
+/* Register Card */
+#Subdiv {
+    width: 450px;
+    background: #0B0F19;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Heading */
+#Subdiv h1 {
+    color: white;
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+/* Subtitle */
+#Subdiv > p {
+    color: #9CA3AF;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+/* Form */
+#form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Inputs */
+#form input {
+    background: #1F2937;
+    border: 1px solid transparent;
+    color: white;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.25s;
+}
+
+#form input::placeholder {
+    color: #9CA3AF;
+}
+
+#form input:focus {
+    border-color: #F97316;
+}
+
+/* Button */
+#form button {
+    background: #F97316;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#form button:hover {
+    background: #EA580C;
+}
+
+/* Bottom text */
+.bottom-text {
+    margin-top: 22px;
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 14px;
+}
+
+.bottom-text a {
+    color: #F97316;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.bottom-text a:hover {
+    text-decoration: underline;
+}
+
+
+.Usernameerror {
+    color: red;
+}
