@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
     const [username, setUsername] = useState("");
@@ -35,12 +37,10 @@ function handleSubmit(event) {
     setLoading(true)
     setTimeout(() => {
         setLoading(false);
-        alert("Login Successful!");
+        navigate("/sidebar")
     }, 2000);
 }
-
-    
-
+            
     return (
         <div className="login-page">
 

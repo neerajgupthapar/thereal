@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
@@ -8,6 +11,10 @@ function ForgotPassword() {
   const [otpError, setOtpError] = useState("");
 
   const [step, setStep] = useState("email");
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   // Email Validation
   function handleSubmit(event) {
@@ -46,6 +53,29 @@ function ForgotPassword() {
     setStep("reset");
   }
 
+  // Confirm Password Validation
+  function handleConfirmPassword() {
+    setConfirmPasswordError("");
+
+    if (!password) {
+      setConfirmPasswordError("Enter any password");
+      return;
+    }
+
+    if (!confirmPassword) {
+      setConfirmPasswordError("Confirm Password");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("Not Matching!");
+      return;
+    }
+
+    // Password successfully validated
+    navigate("/login");
+  }
+
   return (
     <div
       style={{
@@ -71,11 +101,21 @@ function ForgotPassword() {
         {/* EMAIL SCREEN */}
         {step === "email" && (
           <>
-            <h1 style={{ color: "#fff", marginBottom: "8px" }}>
+            <h1
+              style={{
+                color: "#fff",
+                marginBottom: "8px",
+              }}
+            >
               Forgot Password?
             </h1>
 
-            <p style={{ color: "#9CA3AF", marginBottom: "30px" }}>
+            <p
+              style={{
+                color: "#9CA3AF",
+                marginBottom: "30px",
+              }}
+            >
               Enter your registered email to receive an OTP.
             </p>
 
@@ -106,7 +146,12 @@ function ForgotPassword() {
               />
 
               {emailError && (
-                <p style={{ color: "#EF4444", fontSize: "13px" }}>
+                <p
+                  style={{
+                    color: "#EF4444",
+                    fontSize: "13px",
+                  }}
+                >
                   {emailError}
                 </p>
               )}
@@ -133,11 +178,21 @@ function ForgotPassword() {
         {/* OTP SCREEN */}
         {step === "otp" && (
           <>
-            <h1 style={{ color: "#fff", marginBottom: "8px" }}>
+            <h1
+              style={{
+                color: "#fff",
+                marginBottom: "8px",
+              }}
+            >
               Enter OTP
             </h1>
 
-            <p style={{ color: "#9CA3AF", marginBottom: "30px" }}>
+            <p
+              style={{
+                color: "#9CA3AF",
+                marginBottom: "30px",
+              }}
+            >
               We sent a 4-digit OTP to
               <br />
               <strong style={{ color: "#fff" }}>{email}</strong>
@@ -164,7 +219,12 @@ function ForgotPassword() {
             />
 
             {otpError && (
-              <p style={{ color: "#EF4444", fontSize: "13px" }}>
+              <p
+                style={{
+                  color: "#EF4444",
+                  fontSize: "13px",
+                }}
+              >
                 {otpError}
               </p>
             )}
@@ -188,16 +248,95 @@ function ForgotPassword() {
           </>
         )}
 
-        {/* RESET PLACEHOLDER */}
+        {/* RESET PASSWORD SCREEN */}
         {step === "reset" && (
           <>
-            <h1 style={{ color: "#fff", marginBottom: "8px" }}>
+            <h1
+              style={{
+                color: "#fff",
+                marginBottom: "8px",
+              }}
+            >
               Reset Password
             </h1>
 
-            <p style={{ color: "#9CA3AF" }}>
-              OTP verified successfully. You will redirect please wait .
+            <p
+              style={{
+                color: "#9CA3AF",
+                marginBottom: "30px",
+              }}
+            >
+              Create a new password for your account.
             </p>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              }}
+            >
+              <input
+                type="password"
+                placeholder="New Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                style={{
+                  backgroundColor: "#1F2937",
+                  border: "1px solid transparent",
+                  color: "#fff",
+                  padding: "14px 16px",
+                  borderRadius: "10px",
+                  fontSize: "15px",
+                  outline: "none",
+                }}
+              />
+
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={{
+                  backgroundColor: "#1F2937",
+                  border: confirmPasswordError
+                    ? "1px solid #EF4444"
+                    : "1px solid transparent",
+                  color: "#fff",
+                  padding: "14px 16px",
+                  borderRadius: "10px",
+                  fontSize: "15px",
+                  outline: "none",
+                }}
+              />
+
+              {confirmPasswordError && (
+                <p
+                  style={{
+                    color: "#EF4444",
+                    fontSize: "13px",
+                  }}
+                >
+                  {confirmPasswordError}
+                </p>
+              )}
+
+              <button
+                onClick={handleConfirmPassword}
+                style={{
+                  backgroundColor: "#F97316",
+                  color: "#fff",
+                  border: "none",
+                  padding: "14px",
+                  borderRadius: "10px",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                }}
+              >
+                Reset Password
+              </button>
+            </div>
           </>
         )}
       </div>
