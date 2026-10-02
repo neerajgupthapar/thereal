@@ -37,8 +37,11 @@ function handleSubmit(event) {
     setLoading(true)
     setTimeout(() => {
         setLoading(false);
-        navigate("/sidebar")
+        localStorage.setItem("usernames",username);
+        navigate("/Dashboard")
+        
     }, 2000);
+
 }
             
     return (
